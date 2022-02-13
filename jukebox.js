@@ -130,61 +130,96 @@ const theGreatestMusicCollection = [
 // };
 // sortMyGenreSongsAlphabetically("pop");
 
-// --- 🌼 Master ---
-// TODO: write a function that will show all songs by a certain author. It should be possible to search on parts of the name (e.g. a search for "baker" should return two songs)
-const getSongsByMyAuthor = (myAuthor) => {
-  theGreatestMusicCollection.forEach((song) => {
-    if (song.author.toLowerCase().includes(myAuthor.toLowerCase())) {
+// // --- 🌼 Master ---
+// // TODO: write a function that will show all songs by a certain author. It should be possible to search on parts of the name (e.g. a search for "baker" should return two songs)
+// const getSongsByMyAuthor = (myAuthor) => {
+//   theGreatestMusicCollection.forEach((song) => {
+//     if (song.author.toLowerCase().includes(myAuthor.toLowerCase())) {
+//       console.log(song);
+//     }
+//   });
+// };
+// getSongsByMyAuthor("baker");
+
+// // TODO: write a function that asks for your moment and genre preference and returns the title of all song matching your criteria. Use the filter function
+// const getSongsOfMyMomentAndGenre = (myMoment, myGenre) => {
+//   theGreatestMusicCollection.filter((song) => {
+//     if (song.moments.includes(myMoment) && song.genre === myGenre) {
+//       console.log(song.title);
+//     }
+//   });
+// };
+// getSongsOfMyMomentAndGenre("work", "pop");
+
+// // TODO: write a function that asks for your moment and genre preference and returns the title of all song matching your criteria. If a preference is not given, then no filter is applied for that category
+// const getSongsOfMyMomentAndGenreDefault = (myMoment, myGenre) => {
+//   theGreatestMusicCollection.filter((song) => {
+//     if (myMoment === undefined || myGenre === undefined) {
+//       console.log(song.title);
+//     } else if (song.moments.includes(myMoment) || song.genre === myGenre) {
+//       console.log(song.title);
+//     }
+//   });
+// };
+// getSongsOfMyMomentAndGenreDefault("friyay", ""); // returns friday, sonne, baiana
+// getSongsOfMyMomentAndGenreDefault("", "hardrock"); // returns sonne
+// getSongsOfMyMomentAndGenreDefault(); // returns every song
+
+// // TODO: get a list of all the possible moments related to the songs. No duplicate moments may exist
+// const getAllMomentsFromSongs = () => {
+//   let allDistinctMoments = [];
+//   theGreatestMusicCollection.filter((song) => {
+//     song.moments.forEach((moment) => allDistinctMoments.push(moment));
+//   });
+
+//   allDistinctMoments = allDistinctMoments.filter(
+//     (value, index, self) => self.indexOf(value) === index
+//   );
+
+//   console.log(
+//     "All possible moments (sorted alphabetically):",
+//     allDistinctMoments.sort()
+//   );
+// };
+// getAllMomentsFromSongs();
+
+// --- 🌳 Over 9000 ---
+// TODO: write a function that will search for songs based on author, genre and moment. Use an object called searchCriteria to contain these
+const getSongsByMyAuthorGenreMoment = (searchCriteria) => {
+  theGreatestMusicCollection.filter((song) => {
+    if (
+      song.author === searchCriteria.author &&
+      song.genre === searchCriteria.genre &&
+      song.moments.includes(searchCriteria.moment)
+    ) {
       console.log(song);
     }
   });
 };
-getSongsByMyAuthor("baker");
 
-// TODO: write a function that asks for your moment and genre preference and returns the title of all song matching your criteria. Use the filter function
-const getSongsOfMyMomentAndGenre = (myMoment, myGenre) => {
+const getSongsByMyAuthorGenreMomentV2 = (searchCriteria) => {
   theGreatestMusicCollection.filter((song) => {
-    if (song.moments.includes(myMoment) && song.genre === myGenre) {
-      console.log(song.title);
+    if (song.author === searchCriteria.author) {
+      console.log(song);
+    } else if (song.genre === searchCriteria.genre) {
+      console.log(song);
+    } else if (song.moments.includes(searchCriteria.moment)) {
+      console.log(song);
     }
   });
 };
-getSongsOfMyMomentAndGenre("work", "pop");
+getSongsByMyAuthorGenreMoment({
+  author: "Rammstein",
+  genre: "hardrock",
+  moment: "friyay",
+});
 
-// TODO: write a function that asks for your moment and genre preference and returns the title of all song matching your criteria. If a preference is not given, then no filter is applied for that category
-const getSongsOfMyMomentAndGenreDefault = (myMoment, myGenre) => {
-  theGreatestMusicCollection.filter((song) => {
-    if (myMoment === undefined || myGenre === undefined) {
-      console.log(song.title);
-    } else if (song.moments.includes(myMoment) || song.genre === myGenre) {
-      console.log(song.title);
-    }
-  });
-};
-getSongsOfMyMomentAndGenreDefault("friyay", ""); // returns friday, sonne, baiana
-getSongsOfMyMomentAndGenreDefault("", "hardrock"); // returns sonne
-getSongsOfMyMomentAndGenreDefault(); // returns every song
-
-// TODO: get a list of all the possible moments related to the songs. No duplicate moments may exist
-const getAllMomentsFromSongs = () => {
-  let allDistinctMoments = [];
-  theGreatestMusicCollection.filter((song) => {
-    song.moments.forEach((moment) => allDistinctMoments.push(moment));
-  });
-
-  allDistinctMoments = allDistinctMoments.filter(
-    (value, index, self) => self.indexOf(value) === index
-  );
-
-  console.log(
-    "All possible moments (sorted alphabetically):",
-    allDistinctMoments.sort()
-  );
-};
-getAllMomentsFromSongs();
-
-// --- 🌳 Over 9000 ---
-// TODO: write a function that will search for songs based on author, genre and moment. Use an object called searchCriteria to contain these
+getSongsByMyAuthorGenreMomentV2({
+  author: "Rammstein",
+  genre: "hardrock",
+  moment: "friyay",
+});
 
 // --- 🌳 Overarchiever ---
-// TODO: start a band and write a song that you hear once, and is in your mind for the rest of the day. We've all suffered from those, right? Get world-famous. Earn millions. Resist a path leading to the 26th club. Get into IT. Replace the songs in the list with your own.
+// TODO: start a band and write a song that you hear once, and is in your mind for the rest of the day. We've all suffered from those, right? Get world-famous. Earn millions.
+// TODO: Resist a path leading to the 26th club. Get into IT. Replace the songs in the list with your own.
