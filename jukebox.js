@@ -77,14 +77,58 @@ const randomSelection = () => {
 };
 
 const getRandomSong = () => {
-  console.log("Randomly selected song", theGreatestMusicCollection[randomSelection()]);
+  console.log(
+    "Randomly selected song",
+    theGreatestMusicCollection[randomSelection()]
+  );
 };
 getRandomSong();
 
 // --- 🌱 Advanced ---
 // TODO: write a function that will suggest you a random song from a genre of your choosing. You may use any techniques you want, but try to think about which ones make most sense
+const suggestMeASong = (myGenre) => {
+  let myGenreSongs = [];
+
+  theGreatestMusicCollection.forEach((song) => {
+    if (song.genre === myGenre) {
+      myGenreSongs.push(song);
+    }
+  });
+
+  const randomSongIndex = Math.floor(Math.random() * myGenreSongs.length);
+
+  console.log("Random song from my genre:", myGenreSongs[randomSongIndex]);
+};
+suggestMeASong("pop");
+
 // TODO: write a function that will show all songs (full object is okay) that fit your moment choice. Use the filter function
+const showSongsOfMyMoment = (myMoment) => {
+  let myMomentSongs = [];
+
+  theGreatestMusicCollection.forEach((song) => {
+    if (song.moments.includes(myMoment)) {
+      myMomentSongs.push(song);
+    }
+  });
+
+  console.log("Songs from my moment:", myMomentSongs);
+};
+showSongsOfMyMoment("work");
+
 // TODO: sort all songs from a certain genre alphabetically. You may not use for or foreach
+const sortMyGenreSongsAlphabetically = (myGenre) => {
+  let myGenreSongs = [];
+  theGreatestMusicCollection.filter((song) =>
+    song.genre === myGenre ? myGenreSongs.push(song) : ""
+  );
+  console.log("All songs with my genre:", myGenreSongs);
+
+  myGenreSongs.sort((a, b) =>
+    a.title > b.title ? 1 : a.title < b.title ? -1 : 0
+  );
+  console.log("Alphabetically sorted songs with my genre:", myGenreSongs);
+};
+sortMyGenreSongsAlphabetically("pop");
 
 // --- 🌼 Master ---
 // TODO: write a function that will show all songs by a certain author. It should be possible to search on parts of the name (e.g. a search for "baker" should return two songs)
