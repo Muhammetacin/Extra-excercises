@@ -60,11 +60,26 @@ theGreatestMusicCollection.forEach((song) => {
 });
 
 // TODO: write a function that always returns the first song (full object is okay)
-
+const getFirstSong = () => {
+  console.log("The first song", theGreatestMusicCollection[0]);
+};
+getFirstSong();
 
 // TODO: write a function that will return a song at the index of your choosing. You may not use a global var for this index
+const getSelectedSong = (index) => {
+  console.log("Song with index " + index, theGreatestMusicCollection[index]);
+};
+getSelectedSong(2);
 
 // TODO: write a function that will return a random song. Use a separate function for the random selection
+const randomSelection = () => {
+  return Math.floor(Math.random() * theGreatestMusicCollection.length);
+};
+
+const getRandomSong = () => {
+  console.log("Randomly selected song", theGreatestMusicCollection[randomSelection()]);
+};
+getRandomSong();
 
 // --- 🌱 Advanced ---
 // TODO: write a function that will suggest you a random song from a genre of your choosing. You may use any techniques you want, but try to think about which ones make most sense
